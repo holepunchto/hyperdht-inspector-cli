@@ -103,7 +103,7 @@ async function openIdentity(storagePath) {
   await store.ready()
   return {
     store,
-    keyPair: await store.createKeyPair('hyperdht-inspector-client-identity')
+    keyPair: await store.createKeyPair('dht-client-identity')
   }
 }
 
