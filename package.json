@@ -39,7 +39,7 @@
     "graceful-goodbye": "^1.3.3",
     "hypercore-id-encoding": "^1.3.0",
     "hyperdht": "^6.33.2",
-    "hyperdht-inspector": "git+ssh://git@github.com/holepunchto/hyperdht-inspector.git#init",
+    "hyperdht-inspector": "github:holepunchto/hyperdht-inspector#init",
     "paparam": "^1.13.0",
     "pino": "^10.3.1",
     "pino-bare": "^0.1.0"
