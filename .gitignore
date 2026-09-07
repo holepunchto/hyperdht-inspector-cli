@@ -1,5 +1,2 @@
 node_modules/
-coverage/
-.DS_Store
-*.log
-.hyperdht-inspector/
+package-lock.json
