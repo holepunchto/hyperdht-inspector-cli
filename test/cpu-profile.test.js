@@ -24,7 +24,7 @@ test('cpu-profile CLI', async (t) => {
     '--bootstrap',
     JSON.stringify(bootstrap),
     '--duration',
-    '1'
+    '100'
   )
   let stderr = ''
   profile.stderr.on('data', (data) => {
@@ -33,7 +33,7 @@ test('cpu-profile CLI', async (t) => {
 
   const started = JSON.parse(await waitForOutput(profile, 'CPU profiler started'))
   t.is(started.filepath, profilePath, 'reports when recording has started')
-  t.is(started.duration, 1, 'reports the sampling duration')
+  t.is(started.duration, 100, 'reports the sampling duration in milliseconds')
 
   const [exitCode] = await once(profile, 'close')
   t.is(exitCode, 0, `exits automatically after the sampling duration: ${stderr}`)

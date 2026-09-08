@@ -61,7 +61,7 @@ const cpuProfileCmd = command(
   summary('Record a remote CPU profile for a fixed duration'),
   arg('<server-public-key>', 'Inspector server public key'),
   flag('--out <filepath>', 'CPU profile output path').default('profile.cpuprofile'),
-  flag('--duration <seconds>', 'CPU sampling duration in seconds').default(30),
+  flag('--duration <milliseconds>', 'CPU sampling duration in milliseconds').default(30_000),
   storageFlag(),
   bootstrapFlag(),
   async ({ args, flags }) => {
@@ -77,7 +77,7 @@ const cpuProfileCmd = command(
     await client.post('Profiler.start')
     logger.info({ filepath, duration }, 'CPU profiler started')
 
-    await new Promise((resolve) => setTimeout(resolve, duration * 1000))
+    await new Promise((resolve) => setTimeout(resolve, duration))
 
     const result = await client.post('Profiler.stop')
     await writeFile(filepath, JSON.stringify(result.profile))

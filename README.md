@@ -60,7 +60,7 @@ DevTools **Memory** panel.
 Record and save a remote CPU profile:
 
 ```sh
-hyperdht-inspector cpu-profile <server-public-key> --duration 30 --out profile.cpuprofile
+hyperdht-inspector cpu-profile <server-public-key> --duration 30000 --out profile.cpuprofile
 ```
 
 The default duration is 30 seconds. The default output file is
@@ -73,7 +73,7 @@ duration, saves the file, and exits. Open the file in the Chrome DevTools
 ```text
 hyperdht-inspector identity [--storage <path>]
 hyperdht-inspector heapdump <server-public-key> [--out <filepath>]
-hyperdht-inspector cpu-profile <server-public-key> [--duration <seconds>] [--out <filepath>]
+hyperdht-inspector cpu-profile <server-public-key> [--duration <milliseconds>] [--out <filepath>]
 ```
 
 The capture commands also accept these options:
