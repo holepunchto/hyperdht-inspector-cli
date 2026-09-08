@@ -1,6 +1,6 @@
 {
   "name": "hyperdht-inspector-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Capture Node.js or Bare profiles over HyperDHT",
   "homepage": "https://github.com/holepunchto/hyperdht-inspector-cli#readme",
   "bugs": {
