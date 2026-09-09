@@ -25,9 +25,9 @@ const identityCmd = command(
   summary('Print the stable client identity for a server allowlist'),
   storageFlag(),
   async ({ flags }) => {
-    const { store, keyPair } = await openIdentity(flags.storage)
+    const { keyPair } = await openIdentity(flags.storage)
     process.stdout.write(`${idEnc.normalize(keyPair.publicKey)}\n`)
-    await store.close()
+    goodbye.exit()
   }
 )
 
@@ -99,8 +99,9 @@ cmd.parse()
 async function openIdentity(storagePath) {
   const storage = storagePath ? path.resolve(storagePath) : DEFAULT_STORAGE
   const store = new Corestore(storage)
-
   await store.ready()
+  goodbye(() => store.close(), 2)
+
   return {
     store,
     keyPair: await store.createKeyPair('dht-client-identity')
@@ -108,7 +109,7 @@ async function openIdentity(storagePath) {
 }
 
 async function openClient(flags, serverPublicKey) {
-  const { store, keyPair } = await openIdentity(flags.storage)
+  const { keyPair } = await openIdentity(flags.storage)
   const dht = new HyperDHT({
     keyPair,
     bootstrap: flags.bootstrap ? JSON.parse(flags.bootstrap) : undefined
@@ -117,7 +118,6 @@ async function openClient(flags, serverPublicKey) {
 
   goodbye(() => client.close(), 0)
   goodbye(() => dht.destroy(), 1)
-  goodbye(() => store.close(), 2)
 
   return client
 }
