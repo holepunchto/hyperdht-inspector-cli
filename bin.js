@@ -26,7 +26,7 @@ const identityCmd = command(
   storageFlag(),
   async ({ flags }) => {
     const { keyPair } = await openIdentity(flags.storage)
-    console.log(`${idEnc.normalize(keyPair.publicKey)}\n`)
+    process.stdout.write(`${idEnc.normalize(keyPair.publicKey)}\n`)
     goodbye.exit()
   }
 )
