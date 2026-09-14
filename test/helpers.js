@@ -29,7 +29,9 @@ exports.createServer = async (t, bootstrap) => {
 }
 
 exports.spawnCli = (t, ...args) => {
-  const proc = spawn(process.execPath, [BIN, ...args])
+  const proc = spawn(process.execPath, [BIN, ...args], {
+    stdio: 'overlapped'
+  })
 
   t.teardown(async () => {
     if (proc.exitCode === null && proc.signalCode === null) {
