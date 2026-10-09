@@ -7,7 +7,7 @@ const ProtomuxRpcRouter = require('protomux-rpc-router')
 const { isBare } = require('which-runtime')
 const { Server } = require('hyperdht-inspector')
 
-const DEBUG = true
+const DEBUG = false
 const BIN = isBare
   ? path.join(__dirname, '..', 'bin-bare.js')
   : path.join(__dirname, '..', 'bin.js')
