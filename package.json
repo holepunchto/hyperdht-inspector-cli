@@ -42,7 +42,7 @@
     "hyperdht-inspector": "^0.1.1",
     "paparam": "^1.13.0",
     "pino": "^10.3.1",
-    "pino-bare": "^0.1.0"
+    "pino-bare": "^0.2.0"
   },
   "devDependencies": {
     "bare-subprocess": "^6.1.0",

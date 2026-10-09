@@ -7,6 +7,7 @@ const ProtomuxRpcRouter = require('protomux-rpc-router')
 const { isBare } = require('which-runtime')
 const { Server } = require('hyperdht-inspector')
 
+const DEBUG = false
 const BIN = isBare
   ? path.join(__dirname, '..', 'bin-bare.js')
   : path.join(__dirname, '..', 'bin.js')
@@ -55,11 +56,15 @@ exports.runCli = async (t, ...args) => {
   let stderr = ''
 
   proc.stdout.on('data', (data) => {
-    stdout += data.toString()
+    const txt = data.toString()
+    stdout += txt
+    if (DEBUG) console.log(txt)
   })
 
   proc.stderr.on('data', (data) => {
-    stderr += data.toString()
+    const txt = data.toString()
+    stderr += txt
+    if (DEBUG) console.log(txt)
   })
 
   const [exitCode, signal] = await once(proc, 'close')
